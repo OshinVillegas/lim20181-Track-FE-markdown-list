@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/OshinVillegas/lim20181-Track-FE-markdown-list#readme",
   "dependencies": {
+    "Q": "^1.0.0",
     "editorconfig": "^0.15.0",
     "eslintrc": "^1.0.6",
     "gitignore": "^0.6.0"
