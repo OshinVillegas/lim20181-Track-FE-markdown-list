@@ -36,8 +36,13 @@
 
 // // Run marked
 // console.log(myMarked('# heading+', { renderer: renderer }));
+
+// // #!/usr/bin / env node 
 const fs = require('fs');
 const reqpath = require('path');
+const marked = require('marked');
+
+
 
 
 //Funcion Principal
@@ -103,6 +108,17 @@ const filterExtension = (filename) => {
     var extName = reqpath.extname(filename);
     return (extName === '.md');
 };
+const file = (md) => {
+    fs.readFile(md, 'utf-8', (err, data) => {
+        if (err) {
+            console.log('error: ', err);
+        } else {
+            console.log(data);
+        }
+    });
+}
+file('README.md')
+
 
 
 module.exports = mdLinks;

@@ -25,6 +25,7 @@
     "editorconfig": "^0.15.0",
     "eslintrc": "^1.0.6",
     "fs": "0.0.1-security",
-    "gitignore": "^0.6.0"
+    "gitignore": "^0.6.0",
+    "marked": "^0.5.0"
   }
 }
