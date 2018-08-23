@@ -4,23 +4,23 @@ const program = require('commander');
 let options = {
   validate: false,
   stats: false
-};  
+};
 
 program
-    .version('1.0.0')
-    .description('Markdown Links by Oshin Villegas')
-    .arguments('<path-to-file>')
-    .option('-v, --validate', 'HTTP request to find out if the link works or not') //Petición HTTP para averiguar si el link funciona o no
-    .option('-s, --stats', 'basic statistics about links') //Estadísticas básicas sobre los links
-    .action((path)=> {
+  .version('1.0.0')
+  .description('Markdown Links by Oshin Villegas')
+  .arguments('<path-to-file>')
+  .option('-v, --validate', 'HTTP request to find out if the link works or not') //Petición HTTP para averiguar si el link funciona o no
+  .option('-s, --stats', 'basic statistics about links') //Estadísticas básicas sobre los links
+  .action((path) => {
 
-      options.validate = (program.validate ? true : false);
-      options.stats = (program.stats ? true : false);
+    options.validate = (program.validate ? true : false);
+    options.stats = (program.stats ? true : false);
 
-      // console.log('path :' + path);
-      // console.log('options : %j', options);
+    // console.log('path :' + path);
+    // console.log('options : %j', options);
 
-      mdLinks(path, options)
+    mdLinks(path, options)
       .then((links) => {
         console.log(links);
       })
@@ -28,8 +28,8 @@ program
         console.log(err.message);
       });
 
-    })
-    .parse(process.argv);
+  })
+  .parse(process.argv);
 
 // console.log('Arguments: ');
 // program.args.forEach((arg, idx) => {
