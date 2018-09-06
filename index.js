@@ -39,16 +39,26 @@ mdLinks = (path, option) => {
 
         } else if (option.validate === true && option.stats === false) {
           getLinksValidate(file).then((linksvalidate) => {
-            console.log( linksvalidate)
-            resolve(linksvalidate)
+            console.log( linksvalidate);
+            resolve(linksvalidate);
           });
         } else if (option.validate === false && option.stats === true) {
           let linksstats = getLinksStats(file);
           console.log(linksstats)
           resolve(linksstats);
         } else if (option.validate === true && option.stats === true) {
-          let linksvalidatestats = getLinksValidateStats(file);
-          resp = linksvalidatestats;
+          getLinksValidate(file).then(link => {
+            //console.log(link)
+            console.log({
+              total : link.length,
+              uniques :unique(link).length,
+              broken : broken(link).length
+            })
+          })
+          //console.log(linksvalidatestats)
+          //broken()
+          //console.log(linksvalidatestats)
+          //resolve(linksvalidatestats);
         }
       });
     }
@@ -202,9 +212,13 @@ const unique = (listhref) => {
 }
 
 function broken (listhref)  {
+  console.log(listhref)
   return listhref.filter((href) => {
-    return fetch(href)
-    .then(response => response.status !== 200);
+     if(href.code === 404){
+       return href
+     }
+   /*  return fetch(href)
+    .then(response => response.status === 404); */
   });
 }
 
