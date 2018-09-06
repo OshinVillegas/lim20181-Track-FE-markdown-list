@@ -29,20 +29,23 @@ mdLinks = (path, option) => {
 
 
       //Repuesta segun opcion ingresada
-      let resp = [];
+
 
       filelist.forEach(file => {
         if (option === null || (option.validate === false && option.stats === false)){
           let links = getLinks(file);
-          resolve(links);
+          console.log(links)
+          resolve(getLinks);
+
         } else if (option.validate === true && option.stats === false) {
           getLinksValidate(file).then((linksvalidate) => {
-            console.log('bbbbbbbbbbb', linksvalidate, 'bbbbbbbbb')
+            console.log( linksvalidate)
             resolve(linksvalidate)
           });
         } else if (option.validate === false && option.stats === true) {
           let linksstats = getLinksStats(file);
-          resp = linksstats;
+          console.log(linksstats)
+          resolve(linksstats);
         } else if (option.validate === true && option.stats === true) {
           let linksvalidatestats = getLinksValidateStats(file);
           resp = linksvalidatestats;
@@ -60,7 +63,7 @@ mdLinks = (path, option) => {
 };
 
 const filterExtension = (filename) =>{
-  var extName = require('path').extname(filename);
+  var extName = pathNode.extname(filename);
   return (extName === '.md'); 
 };
 
@@ -72,7 +75,7 @@ const filesDirectory = (diretory) => {
 
     files.filter(filterExtension).forEach((file) => {
         
-      let filepath = require('path').resolve(diretory, file);
+      let filepath = pathNode.resolve(diretory, file);
       filelist.push(filepath);
 
     });
