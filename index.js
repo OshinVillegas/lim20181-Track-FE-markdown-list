@@ -2,6 +2,7 @@ const fs = require('fs');
 const marked  = require('marked');
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
+const pathNode = require('path')
 
 mdLinks = (path, option) => {
 
@@ -17,7 +18,7 @@ mdLinks = (path, option) => {
 
       if (stat.isFile()) { //si es archivo
         if (filterExtension(path)){ //si es archivo con extension md
-          let filename = require('path').resolve(__dirname, path); //Requerir path y usarlo para
+          let filename = pathNode.resolve(__dirname, path); //Requerir path y usarlo para
           filelist.push(filename);
         }
       }
@@ -33,10 +34,12 @@ mdLinks = (path, option) => {
       filelist.forEach(file => {
         if (option === null || (option.validate === false && option.stats === false)){
           let links = getLinks(file);
-          resp = links;
+          resolve(links);
         } else if (option.validate === true && option.stats === false) {
-          let linksvalidate = getLinksValidate(file);
-          resp = linksvalidate;
+          getLinksValidate(file).then((linksvalidate) => {
+            console.log('bbbbbbbbbbb', linksvalidate, 'bbbbbbbbb')
+            resolve(linksvalidate)
+          });
         } else if (option.validate === false && option.stats === true) {
           let linksstats = getLinksStats(file);
           resp = linksstats;
@@ -45,9 +48,6 @@ mdLinks = (path, option) => {
           resp = linksvalidatestats;
         }
       });
-
-      resolve(resp);
-
     }
     catch(err) {
 
@@ -118,48 +118,45 @@ const getLinks = (filename) => {
 }
 
 const getLinksValidate = (filename) => {
-  try {
-    let linklist = [];
+  return new Promise((resolve, reject) => {
+    try {
+      //Leer archivo MD
+      let data = fs.readFileSync(filename, 'utf8');
 
-    let linkobj = { 
-      href: '',
-      text: '',
-      file: filename,
-      status: '',
-      code: ''
-    }
+      //Convertir a Html
+      let html = marked(data);
 
-    //Leer archivo MD
-    let data = fs.readFileSync(filename,'utf8');
+      //Obtener solo links
+      $ = cheerio.load(html);
+      links = $('a');
+      const promesas = []
+      $(links).each(function (i, link) {
+        let linkobj = {
+          href: '',
+          text: '',
+          file: filename,
+          status: '',
+          code: ''
+        }
 
-    //Convertir a Html
-    let html = marked(data);
+        linkobj.href = $(link).attr('href');
+        linkobj.text = $(link).text();
 
-    //Obtener solo links
-    $ = cheerio.load(html);
-    links = $('a');
-    $(links).each(function(i, link){
-      
-      linkobj.href = $(link).attr('href');
-      linkobj.text = $(link).text();
-
-      //Validar si la url es valida o no
-      fetch(linkobj.href).then((response) => {
-        linkobj.status = response.statusText;
-        linkobj.code = response.status;
+        //Validar si la url es valida o no
         
-      }, (error) => {
-        throw error;
-      })
-      
-      linklist.push(linkobj);
-    });
-
-    return linklist;
-
-  } catch (err) {
-    throw err;
-  }
+        promesas.push(new Promise((resolveInner, rejectInner) => {
+          fetch(linkobj.href).then((response) => {
+            linkobj.status = response.statusText;
+            linkobj.code = response.status;
+            resolveInner(linkobj)
+          })
+        }))
+      });
+      Promise.all(promesas).then(resolve)
+    } catch (err) {
+      reject(err);
+    }
+  })
 }
 
 //Funcion que devuelve el resumen del archivo

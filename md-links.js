@@ -23,7 +23,7 @@ program
 
       mdLinks(path, options)
       .then((links) => {
-        console.log(links);
+        //console.log(links);
       })
       .catch((err) => {
         console.log(err.message);
