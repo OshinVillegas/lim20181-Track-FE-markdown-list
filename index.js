@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 const fetch = require('node-fetch');
 const pathNode = require('path')
 
-mdLinks = (path, option) => {
+const mdLinks = (path, option) => {
 
   return new Promise((resolve, reject) => {
 

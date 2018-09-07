@@ -1,26 +1,26 @@
-const mdLinks = require('../index');
+const mdLinks = require('../index.js')
 
-test('mdLinks(./src, options) to equal true', () => {
-  let options = {
-    validate: false,
-    stats: false
-  }
-  expect(mdLinks('./src', options)).toBe(true);
-});
+const options = {
+  validate: undefined,
+  stats: undefined
+};
 
-test('mdLinks(./src/index.md, options) to equal true', () => {
-  let options = {
-    validate: false,
-    stats: false
-  }
-  expect(mdLinks('./src/index.md', options)).toBe(true);
-});
+test('deberia ser array de objetos', () => {
+  // jest.setTimeout(12000)
 
-test('mdLinks(./srcd, options) to equal true', () => {
-  let options = {
-    validate: false,
-    stats: false
-  }
-  errorMsg = 'Archivo o carpeta no existe';
-  expect(mdLinks('./srcd', options)).toBe(true);
-});
+  return mdLinks('./test', options)
+    .then(linklist => {
+      expect(linklist).toEqual([{
+        href: 'https://nodejs.org/',
+        text: 'Node.js',
+        file:
+          'C:\\Users\\Oshin\\Desktop\\lim20181-Track-FE-markdown-list\\README.md'
+      },
+      {
+        href: 'https://nodejs.org/',
+        text: 'Node.js',
+        file:
+          'C:\\Users\\Oshin\\Desktop\\lim20181-Track-FE-markdown-list\\README.md'
+      }])
+    })
+})
