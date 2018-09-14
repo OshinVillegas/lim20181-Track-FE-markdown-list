@@ -1,4 +1,4 @@
-const mdLinks = require('../index.js')
+const mdLinks = require('../index')
 
 const options = {
   validate: undefined,
@@ -9,8 +9,8 @@ test('deberia ser array de objetos', () => {
   // jest.setTimeout(12000)
 
   return mdLinks('./test', options)
-    .then(linklist => {
-      expect(linklist).toEqual([{
+    .then(getLinks => {
+      expect(getLinks).toEqual([{
         href: 'https://nodejs.org/',
         text: 'Node.js',
         file:

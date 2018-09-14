@@ -1,10 +1,10 @@
 {
   "name": "oshinvillegas-mdlinks",
-  "version": "1.0.0",
-  "main": "./md-links.js",
+  "version": "1.0.1",
+  "main": "md-links.js",
   "license": "GPL-3.0",
   "bin": {
-    "md-links": "./md-links.js"
+    "md-links": "md-links.js"
   },
   "description": "[Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado\r ligero muy popular entre developers. Es usado en muchísimas plataformas que\r manejan texto plano (GitHub, foros, blogs, ...), y es muy común\r encontrar varios archivos en ese formato en cualquier tipo de repositorio\r (empezando por el tradicional `README.md`).",
   "entry point": "index.js",
@@ -21,13 +21,14 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "eslint": "eslint md-links.js"
   },
   "keywords": [
     "md-links"
   ],
   "devDependencies": {
-    "jest": "^23.5.0"
+    "jest": "^23.6.0"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",

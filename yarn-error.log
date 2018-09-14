@@ -1,0 +1,64 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\Oshin\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js test
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Calibre2\;C:\Program Files\TortoiseGit\bin;C:\Program Files\Git\cmd;C:\Users\Oshin\AppData\Roaming\nvm;C:\Users\Oshin\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\Oshin\AppData\Local\atom\bin;C:\Users\Oshin\AppData\Local\GitHubDesktop\bin;C:\Users\Oshin\AppData\Roaming\npm;C:\Users\Oshin\AppData\Roaming\nvm;C:\Users\Oshin\AppData\Roaming\nvm;C:\Users\Oshin\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\Oshin\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\Oshin\AppData\Local\atom\bin;C:\Users\Oshin\AppData\Local\GitHubDesktop\bin;C:\Users\Oshin\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\Oshin\AppData\Roaming\npm
+
+Yarn version: 
+  1.9.4
+
+Node version: 
+  10.6.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EISDIR: illegal operation on a directory, read
+
+npm manifest: 
+  {
+    "name": "oshinvillegas-mdlinks",
+    "version": "1.0.1",
+    "main": "md-links.js",
+    "license": "GPL-3.0",
+    "bin": {
+      "md-links": "md-links.js"
+    },
+    "description": "[Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado\r ligero muy popular entre developers. Es usado en muchísimas plataformas que\r manejan texto plano (GitHub, foros, blogs, ...), y es muy común\r encontrar varios archivos en ese formato en cualquier tipo de repositorio\r (empezando por el tradicional `README.md`).",
+    "entry point": "index.js",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/OshinVillegas/lim20181-Track-FE-markdown-list.git"
+    },
+    "author": "Oshin Villegas",
+    "bugs": {
+      "url": "https://github.com/OshinVillegas/lim20181-Track-FE-markdown-list/issues"
+    },
+    "homepage": "https://github.com/OshinVillegas/lim20181-Track-FE-markdown-list#readme",
+    "directories": {
+      "test": "test"
+    },
+    "scripts": {
+      "test": "jest --coverage",
+      "eslint": "eslint md-links.js"
+    },
+    "keywords": [
+      "md-links"
+    ],
+    "devDependencies": {
+      "jest": "^23.6.0"
+    },
+    "dependencies": {
+      "cheerio": "^1.0.0-rc.2",
+      "commander": "^2.17.1",
+      "marked": "^0.5.0",
+      "node-fetch": "^2.2.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
