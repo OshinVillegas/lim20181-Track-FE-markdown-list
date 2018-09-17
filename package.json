@@ -1,7 +1,7 @@
 {
   "name": "oshin-villegas-mdlinks",
   "version": "1.0.2",
-  "main": "md-links.js",
+  "main": "index.js",
   "license": "GPL-3.0",
   "bin": {
     "md-links": "md-links.js"
