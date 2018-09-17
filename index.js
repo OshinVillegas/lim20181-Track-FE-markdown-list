@@ -54,10 +54,6 @@ const mdLinks = (path, option) => {
               broken : broken(link).length
             })
           })
-          //console.log(linksvalidatestats)
-          //broken()
-          //console.log(linksvalidatestats)
-          //resolve(linksvalidatestats);
         }
       });
     }
@@ -228,18 +224,6 @@ const getLinksValidateStats = (filename) => {
       Unique: 0,
       Broken: 0
     }
-
-    // let data = fs.readFileSync(filename,'utf8');
-    // let html = marked(data);
-
-    // let listhref = [];
-
-    // $ = cheerio.load(html);
-    // links = $('a');
-    // $(links).each(function(i, link){
-    //   let href = $(link).attr('href');
-    //   listhref.push(href);
-    // });
     return validatestats
   } 
   catch(err){}

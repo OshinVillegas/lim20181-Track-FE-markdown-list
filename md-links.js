@@ -18,9 +18,6 @@ program
       options.validate = (program.validate ? true : false);
       options.stats = (program.stats ? true : false);
 
-      // console.log('path :' + path);
-      // console.log('options : %j', options);
-
       mdLinks(path, options)
       .then((links) => {
         //console.log(links);
@@ -31,12 +28,3 @@ program
 
     })
     .parse(process.argv);
-
-// console.log('Arguments: ');
-// program.args.forEach((arg, idx) => {
-//     console.log('  - ' + idx + ': ' + arg);
-// });
-
-//node cli.js README.md -v -s
-//node cli.js README.md -v
-//node cli.js README.md -s
