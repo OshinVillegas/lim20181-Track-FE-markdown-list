@@ -15,7 +15,6 @@ const mdLinks = (path, option) => {
     
       //Obtener datos de la ruta (archivo o carpeta)
       let stat = fs.statSync(path);
-
       if (stat.isFile()) { //si es archivo
         if (filterExtension(path)){ //si es archivo con extension md
           let filename = pathNode.resolve(__dirname, path); //Requerir path y usarlo para
@@ -224,36 +223,26 @@ function broken (listhref)  {
 
 const getLinksValidateStats = (filename) => {
   try {
-
     let validatestats = { 
       Total: 0,
       Unique: 0,
       Broken: 0
     }
 
-    let data = fs.readFileSync(filename,'utf8');
-    let html = marked(data);
+    // let data = fs.readFileSync(filename,'utf8');
+    // let html = marked(data);
 
-    let listhref = [];
+    // let listhref = [];
 
-    $ = cheerio.load(html);
-    links = $('a');
-    $(links).each(function(i, link){
-      let href = $(link).attr('href');
-      listhref.push(href);
-    });
-
-    let listhrefunique = unique(listhref);
-    let listhrefbroken = broken(listhrefunique);
-    
-    validatestats.Total = listhref.length;
-    validatestats.Unique = listhrefunique.length;
-    validatestats.Broken = listhrefbroken.length;
-
-    return validatestats;
-  } catch (err) {
-    throw err;
-  }
+    // $ = cheerio.load(html);
+    // links = $('a');
+    // $(links).each(function(i, link){
+    //   let href = $(link).attr('href');
+    //   listhref.push(href);
+    // });
+    return validatestats
+  } 
+  catch(err){}
 }
 
 
