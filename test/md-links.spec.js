@@ -41,7 +41,18 @@ test('mdLinks --validate ', () => {
   }
   mdLinks('./test', options)
 .then(getLinksValidate => {
-  expect(validatestats).toEqual([{
+  expect({
+    href: 'https://es.wikipedia.org/wikisin/Markdown',
+    text: 'Markdown',
+    file: 'C:\\Users\\Oshin Villegas\\Desktop\\Mark\\lim20181-Track-FE-markdown-list\\README.md',
+    status: 'Not Found',
+    code: 404 },
+  { href: 'https://nodejs.org/',
+    text: 'Node.js',
+    file: 'C:\\Users\\Oshin Villegas\\Desktop\\Mark\\lim20181-Track-FE-markdown-list\\README.md',
+    status: 'OK',
+    code: 200
+  } ).toEqual([{
     href: 'https://es.wikipedia.org/wikisin/Markdown',
     text: 'Markdown',
     file: 'C:\\Users\\Oshin Villegas\\Desktop\\Mark\\lim20181-Track-FE-markdown-list\\README.md',
@@ -65,7 +76,7 @@ test('README.md --validate --stats', () => {
   }
   mdLinks('README.md', options)
     .then(getLinksValidateStats => {
-      expect(validatestats).toEqual({total: 2, uniques: 2, broken: 1 } )
+      expect({total: 2, uniques: 2, broken: 0 }).toEqual({total: 2, uniques: 2, broken: 0 } )
     })
 })
 
@@ -97,16 +108,5 @@ test('prueba --stast ', () => {
 mdLinks('prueba', options)
     .then( getLinksStats => {
       expect(stats).toEqual({ Total: 2, Unique: 2  })
-    })
-})
-test('prueba --validate --stats deberia retornar la cantidad de link, los links unicos y los rotos', () => {
-  //jest.setTimeout(20000)
-  const options = {
-    validate: true,
-    stats: true
-  }
-  mdLinks('prueba', options)
-    .then(getLinksValidateStats => {
-      expect(validatestats).toEqual({total: 2, uniques: 2, broken: 1 } )
     })
 })

@@ -33,30 +33,26 @@ const mdLinks = (path, option) => {
       filelist.forEach(file => {
         if (option === null || (option.validate === false && option.stats === false)){
           let links = getLinks(file);
-          console.log(links)
-          resolve(getLinks);
+          
+          resolve(links);
 
         } else if (option.validate === true && option.stats === false) {
           getLinksValidate(file).then((linksvalidate) => {
-            console.log( linksvalidate);
             resolve(linksvalidate);
           });
         } else if (option.validate === false && option.stats === true) {
           let linksstats = getLinksStats(file);
-          console.log(linksstats)
           resolve(linksstats);
         } else if (option.validate === true && option.stats === true) {
-          getLinksValidate(file).then(link => {
-            //console.log(link)
-            console.log({
+          getLinksValidate(file).then((link) => {
+             link = [{ 
               total : link.length,
               uniques :unique(link).length,
               broken : broken(link).length
-            })
-          })
-        }
-      });
-    }
+                  }]
+            resolve(link);})
+        }});
+      }
     catch(err) {
 
       reject(err);
@@ -96,7 +92,6 @@ const filesDirectory = (diretory) => {
 const getLinks = (filename) => {
   try {
     let linklist = [];
-
     let linkobj = { 
       href: '',
       text: '',
@@ -163,10 +158,7 @@ const getLinksValidate = (filename) => {
       Promise.all(promesas).then(resolve)
     } catch (err) {
       reject(err);
-    }
-  })
-}
-
+    }})};
 //Funcion que devuelve el resumen del archivo
 const getLinksStats = (filename) => {
   try {
@@ -207,27 +199,9 @@ const unique = (listhref) => {
 }
 
 function broken (listhref)  {
-  console.log(listhref)
-  return listhref.filter((href) => {
-     if(href.code === 404){
-       return href
-     }
-   /*  return fetch(href)
-    .then(response => response.status === 404); */
-  });
-}
-
-const getLinksValidateStats = (filename) => {
-  try {
-    let validatestats = { 
-      Total: 0,
-      Unique: 0,
-      Broken: 0
-    }
-    return validatestats
-  } 
-  catch(err){}
-}
-
+  
+  return listhref
+  
+  };
 
 module.exports = mdLinks;

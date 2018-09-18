@@ -19,11 +19,24 @@ program
       options.stats = (program.stats ? true : false);
 
       mdLinks(path, options)
-      .then((links) => {
-        //console.log(links);
+      .then( getLinks =>{
+        console.log(getLinks);
+        resolve(getLinks)
       })
+      .then ( linksvalidate =>{
+        console.log( linksvalidate);
+        resolve(linksvalidate)
+      })
+      .then( linksstats =>{
+        console.log(linksstats);
+        resolve(linksstats)
+      })
+     .then((link) =>{
+      console.log(link)
+      resolve(link)
+     })
       .catch((err) => {
-        console.log(err.message);
+       
       });
 
     })
