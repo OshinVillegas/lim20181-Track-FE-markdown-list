@@ -204,4 +204,13 @@ function broken (listhref)  {
   
   };
 
+  function broken (listhref)  {
+    return listhref.filter((href) => {
+       if(href.code === 404){
+         return href
+       }
+     /*  return fetch(href)
+      .then(response => response.status === 404); */
+    });
+  }
 module.exports = mdLinks;
